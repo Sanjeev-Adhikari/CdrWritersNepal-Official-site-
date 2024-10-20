@@ -4,11 +4,637 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../css/output.css" rel="stylesheet">
+    <!-- <meta http-equiv="refresh" content="1"> -->
     <link rel="icon" href="../../images/favicon.svg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <style>
+        .faq-answer {
+          display: none;
+        }
+        .faq-active .faq-answer {
+          display: block;
+        }
+        .accordion-content {
+      transition: max-height 0.4s ease-in-out;
+      overflow: hidden;
+    }
+    .counter {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #111827;
+       /* Tailwind blue color */
+    }
+    .swiper-wrapper {
+      width: 100%;
+      height: max-content !important;
+      padding-bottom: 64px !important;
+      -webkit-transition-timing-function: linear !important;
+      transition-timing-function: linear !important;
+      position: relative;
+     
+      }
+      .swiper-pagination {
+        margin-bottom: 20px;
+      }
+      .swiper-pagination-bullet {
+      background: #4f46e5;
+      }
+       /* Arrow Styles */
+ /* Arrow Styles */
+.swiper-button-prev,
+.swiper-button-next {
+  width: 36px; /* Reduce the width */
+  height: 36px; /* Reduce the height */
+  color: #111827; /* Set arrow color */
+  background-color: transparent; /* Transparent background */
+   /* Add a smaller border */
+  border-radius: 50%; /* Make them circular */
+  padding: 4px; /* Reduce the padding */
+  transition: all 0.3s ease; /* Smooth transition effect */
+}
+
+  /* Position the arrows in the middle of the slides */
+  .swiper-button-prev {
+    left: 0; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%); /* Vertically center the arrow */
+  }
+
+  .swiper-button-next {
+    right: 0; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%); /* Vertically center the arrow */
+  }
+
+  /* Hover effect */
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background-color: rgba(0, 0, 255, 0.1); /* Slight background color on hover */
+  }
+  /* Size of the arrow icon */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 22px; /* Reduce the arrow size */
+}
+
+  /* Default (Inactive) Bullet Color */
+.swiper-pagination-bullet {
+  background-color: lightgray; /* Set your inactive bullet color here */
+  opacity: 1; /* Ensure full opacity for inactive bullets */
+}
+
+/* Active Bullet Color */
+.swiper-pagination-bullet-active {
+  background-color: gray; /* Set your active bullet color here */
+  opacity: 1; /* Ensure full opacity for the active bullet */
+}
+/* Ensure that the images inside the swiper slides are responsive */
+.slide-image {
+  width: 100%; /* Full width */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 800px; /* Set a maximum width to fit the image properly */
+  object-fit: cover; /* Ensures image covers the entire container */
+  border-radius: 16px; /* Optional: Rounds the corners of the image */
+}
+
+/* Swiper Slide */
+.swiper-slide {
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
+/* Lightbox container (hidden by default) */
+.lightbox {
+  position: fixed;
+  z-index: 9999;
+  display: none; /* Initially hidden */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Lightbox image */
+.lightbox-content {
+  margin-top: 40px;
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+/* Close button */
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+ </style>
+  
+
 </head>
 <body>
     <%- include('../partials/header') %>
-    
+    <main class="relative font-Roboto">
+      <!-- landing -->
+        <section class="flex md:flex-row flex-col md:gap-0 gap-6 md:h-[100vh]">
+          <!-- Left Side (Red Background with Diagonal Cut) -->
+          <div class="md:w-[60%] lg:flex lg:items-center lg:justify-between lg:px-20 w-full bg-customRed relative md:clip-zigzag flex items-center justify-center">
+            <div class="text-white mt-10 md:mt-0 w-[80%] ">
+              <h1 class="md:text-6xl text-4xl font-bold">Worried About your CDR report ?</h1>
+              <p class="mt-4 md:text-xl md:w-[80%] lg:w-[90%]">For 100% Positive Assessment from Engineers Australia on the first go take our professional assistance.</p>
+              <button class="bg-white md:mb-0 mb-4   text-red-600 font-bold px-6 py-3 rounded-lg mt-4 ring-1 ring-black hover:translate-y-0.5 duration-300">
+                Start Your Cdr now!
+              </button>
+            </div>
+          </div>
+      
+          <!-- Right Side (Form or any other content) -->
+          <div class="md:w-[40%] w-full mb-6 bg-white flex items-center justify-center">
+            <form class="bg-gray-100 p-8 rounded-lg shadow-lg w-96">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Name</label>
+                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Email</label>
+                <input type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                <label class="block text-gray-700 font-bold mb-2">Phone Number</label>
+                <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                <label class="block text-gray-700 font-bold mb-2">Message</label>
+                <textarea type="email"  class="w-full resize-none px-4 py-2 border rounded-lg focus:outline-none"></textarea>
+              </div>
+              <button class="bg-red-500 text-white py-2 px-4 rounded-lg w-full">Get Free Consultation</button>
+            </form>
+          </div>
+        </section>
+        <!-- What is CDR? -->
+        <section class="bg-gray-50">
+            <div class="container md:h-[500px] mx-auto px-4 md:py-20 py-5">
+                <!-- Title -->
+                <h1 class="text-4xl text-red-600 font-bold text-center mb-10">What is CDR Report?</h1>
+                <p class="text-gray-900  leading-relaxed text-center">A Competency Demonstration Report (CDR) is a document required by Engineers Australia for the Skills Assessment process for engineers seeking migration to Australia. It allows Engineers Australia to evaluate the competencies of overseas-trained engineers to determine whether their qualifications and work experience meet Australian standards for engineering practice. </p>
+            
+                <!-- List of Items (Career Episodes, CPD, etc.) -->
+                <div class="grid grid-cols-2 mt-6 md:grid-cols-4 gap-6 text-center">
+                  <button class="bg-red-500 shadow-lg p-4 rounded-lg cursor-pointer hover:bg-red-500 text-white transition-colors duration-300" onclick="showInfo('careerEpisodes')">
+                    3 CE's (Career Episodes)
+                  </button>
+                  <button class="bg-red-500 shadow-lg p-4 rounded-lg cursor-pointer hover:bg-red-500 text-white transition-colors duration-300" onclick="showInfo('summaryStatement')">
+                    SS (Summary Statement)
+                  </button>
+                  <button class="bg-red-500 shadow-lg p-4 rounded-lg cursor-pointer hover:bg-red-500 text-white transition-colors duration-300" onclick="showInfo('cpd')">
+                    CPD (Continuing Professional Development)
+                  </button>
+                  <button class="bg-red-500 shadow-lg p-4 rounded-lg cursor-pointer hover:bg-red-500 text-white transition-colors duration-300" onclick="showInfo('cv')">
+                    CV (Curriculum Vitae)
+                  </button>
+                
+                </div>
+            
+                <!-- Information Section -->
+                <div id="infoSection" class="mt-10 bg-white shadow-lg p-6 rounded-lg">
+                  <p class="text-gray-900 font-bold" id="infoText">Click on any item above to learn more about it.</p>
+                </div>
+              </div>
+            
+              <script>
+                function showInfo(section) {
+                  const info = {
+                    careerEpisodes: "The CDR report requires 3 career episodes, each highlighting a significant engineering project or work experience that demonstrates your competency in different areas. These episodes must be written in the first person and describe your specific role in the project.",
+                    summaryStatement: "The summary statement is a crucial part of the CDR. It links each career episode to the required competencies Engineers Australia expects. This statement must clearly map each competency to the corresponding evidence in your career episodes.",
+                    cpd: "CPD (Continuing Professional Development) is essential to demonstrate that you have kept your skills updated. This includes formal and informal learning experiences that help you stay current in your engineering profession.",
+                    cv: "The CV should reflect your academic and professional engineering achievements. It should be concise, typically 3-5 pages, focusing on your education, work experience, and any projects related to your engineering practice.",
+                    
+                  };
+            
+                  // Update the info section
+                  document.getElementById('infoText').innerText = info[section];
+                }
+              </script>
+        </section>
+        <!-- Why experts? -->
+        <section class="h-auto bg-gray-100 py-20 ">
+      
+            <div class=" md:h-[400px] flex flex-col justify-center items-center md:max-w-6xl bg-white rounded-lg shadow-lg mx-auto">
+                <h2 class="text-3xl text-red-600 md:mt-0 mt-6  font-bold mb-6 text-center">Want to know Why You need an expert for your CDR assistance?</h2>
+                <p class="text-gray-900  leading-relaxed text-center">Engineers Australia (EA) has strict guidelines and requirements for CDR submissions. A CDR requires well-written career episodes that highlight your engineering skills, projects, and experience. The Summary Statement is one of the most critical parts of the CDR, as it links your career episodes to the competencies Engineers Australia requires.
+                    CDR experts ensure that your engineering practices and skills are aligned with Australian standards. If you're an international engineer, they help you demonstrate that your knowledge meets the local engineering requirements in Australia.
+                   
+                 <div class="flex flex-wrap justify-center items-center md:my-0 my-6  md:h-1/3 gap-4  ">
+                    <button class="bg-red-500 text-white rounded-md px-6 py-4 ">
+                        <h3>Engineers Australia's Guidelines</h3>
+                    </button>
+                    <button class="bg-red-500 text-white rounded-md px-6 py-4">
+                        AI and Plagiarism-Free Content
+                    </button>
+                    <button class="bg-red-500 text-white rounded-md px-6 py-4">
+                        Demonstrating Engineering Problem-Solving
+                    </button>
+                    <button class="bg-red-500 text-white rounded-md px-6 py-4">
+                        Technical Detailing
+                    </button>
+                 </div>
+           </div>
+        </section>
+        <!-- Why CDR writers Nepal -->
+        <section>
+            <div class="container mx-auto py-10 px-4">
+                <!-- Two Column Layout -->
+                <div class="flex flex-col md:flex-row items-center md:items-start justify-between">
+                  
+                  <!-- Left Side: Content Section -->
+                  <div class="md:w-1/2 w-full mb-6 md:my-20 md:mb-0">
+                    <h1 class="text-4xl font-bold text-red-600 mb-4">Why Choose CDR Writers Nepal?</h1>
+                    <p class="text-gray-900 leading-relaxed mb-4">
+                      At CDR Writers Nepal, we pride ourselves on providing **100% positive responses** to all of our clients. Till date, we have successfully helped countless engineers achieve their migration goals by delivering high-quality Competency Demonstration Reports (CDR) that lead to **one-shot positive assessments** from Engineers Australia.
+                    </p>
+                    <p class="text-gray-900 leading-relaxed mb-4">
+                      With **4 years of experience** in this field, our **professional team** of CDR writers, engineers, and consultants understands the exact requirements of Engineers Australia. We tailor every CDR to highlight your skills, ensuring that you demonstrate the required competencies perfectly, avoiding any mistakes that could lead to rejection.
+                    </p>
+                    <p class="text-gray-900 leading-relaxed mb-6">
+                      When you choose CDR Writers Nepal, you’re choosing a dedicated partner who will guide you through the entire process, providing assistance with Career Episodes, Summary Statements, and CPD. We ensure that your report is 100% plagiarism-free, well-organized, and aligned with the Engineers Australia guidelines.
+                    </p>
+                    <button class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-600 transition duration-300">Get Professional Help</button>
+                  </div>
+            
+                  <!-- Right Side: Image Section -->
+                  <div class="md:w-1/2 w-full">
+                    <img src="../../images/cdrwnepal.png" alt="CDR Report Assistance" class="rounded-lg shadow-lg w-full h-auto object-cover">
+                  </div>
+            
+                </div>
+              </div>
+            
+        </section>
+        <!-- achievements -->
+        <section class="py-10 bg-gray-100">
+          <div class="container mx-auto text-center ">
+            <h2 class="text-4xl font-bold mb-6 text-red-600">Our Achievements</h2>
+        
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 mt-10 gap-4">
+              <div >
+                <div class="counter " id="clients">0</div>
+                <p class="text-xl">Clients</p>
+              </div>
+              <div>
+                <div class="counter" id="years">0</div>
+                <p class="text-xl">Years of Service</p>
+              </div>
+              <div>
+                <div class="counter" id="projects">0</div>
+                <p class="text-xl">Successful Projects</p>
+              </div>
+              <div>
+                <div class="counter" id="outcomes">0%</div>
+                <p class="text-xl">Positive Outcomes</p>
+              </div>
+            </div>
+          </div>
+             <!-- Custom JS for Count-Up Animation -->
+        <script>
+          // Counter function
+          // Counter function
+  function countUp(elementId, start, end, duration, isPercentage = false) {
+    const element = document.getElementById(elementId);
+    let current = start;
+    const increment = (end - start) / (duration / 50); // Increment based on frame rate
+
+    function updateCounter() {
+      current += increment;
+      if (current >= end) {
+        current = end;
+        clearInterval(interval);
+      }
+      element.textContent = Math.floor(current) + (isPercentage ? "%" : ""); // Add '%' if needed
+    }
+
+    const interval = setInterval(updateCounter, 50); // Update every 50ms (20fps)
+  }
+
+  // Trigger the count-up on page load
+  window.onload = function() {
+    countUp("clients", 0, 150, 5000);     // 0 to 500 clients in 2 seconds
+    countUp("years", 0, 4, 5000);        // 0 to 10 years in 2 seconds
+    countUp("projects", 0, 150, 5000);    // 0 to 150 projects in 2 seconds
+    countUp("outcomes", 0, 100, 5000, true); // 0 to 100% outcomes in 2 seconds (with '%')
+  };
+        </script>
+
+        </section>
+        <!-- banner -->
+        <section class="relative bg-gray-50 w-full object-fill bg-cover  bg-center" style="background-image: url('/mnt/data/A_clean,_minimalist_full-width_banner_with_a_backg.png');">
+          <img src="../../images/Tihar Offers (1).png" class="mx-auto h-[400px] " alt="">
+        </section>
+        <!-- success stories -->
+        <section>
+          <div class="text-center mt-20">
+            <h1 class="text-4xl text-gray-800 font-bold">Successfull Outcomes</h1>
+          </div>
+          <div class="w-[80%] mt-10 mx-auto relative">
+            <div class="swiper multiple-slide-carousel swiper-container relative">
+              <div class="swiper-wrapper mb-4">
+                <!-- First Slide (Card 1) -->
+                <div class="swiper-slide">
+                  <div class="card-container rounded-2xl border border-red-100 flex justify-center items-center shadow-lg p-5">
+                    <img src="../../images/hehe.png" alt="Slide 1" class="slide-image" onclick="openLightbox(this)">
+                  </div>
+                </div>
+          
+                <!-- Second Slide (Card 2) -->
+                <div class="swiper-slide">
+                  <div class="card-container rounded-2xl  border border-red-100 flex justify-center items-center shadow-lg p-5">
+                    <img src="../../images/hehe.png" alt="Slide 2" class="slide-image" onclick="openLightbox(this)">
+                  </div>
+                </div>
+          
+                <!-- Third Slide (Card 3) -->
+                <div class="swiper-slide">
+                  <div class="card-container rounded-2xl border border-red-100 flex justify-center items-center shadow-lg p-5">
+                    <img src="../../images/hehe.png" alt="Slide 3" class="slide-image" onclick="openLightbox(this)">
+                  </div>
+                </div>
+          
+                <!-- Fourth Slide (Card 4) -->
+                <div class="swiper-slide">
+                  <div class="card-container rounded-2xl border border-red-100 flex justify-center items-center shadow-lg p-5">
+                    <img src="../../images/hehe.png" alt="Slide 4" class="slide-image" onclick="openLightbox(this)">
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Pagination (Bottom Navigation) -->
+              <div class="swiper-pagination"></div>
+          
+              <!-- Arrows for Navigation -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+          
+              <div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
+                <span class="close-lightbox">&times;</span>
+                <img class="lightbox-content" id="fullImage">
+              </div>
+            </div>
+          
+            <!-- Swiper Initialization Script -->
+          <script>
+            var swiper = new Swiper(".multiple-slide-carousel", {
+              loop: true,
+              slidesPerView: 3,
+              spaceBetween: 20,
+              autoplay: {
+                delay: 3000, // Slide every 3 seconds
+                disableOnInteraction: false, // Continue autoplay after user interaction
+              },
+              navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              },
+              pagination: {
+                el: ".swiper-pagination",
+                clickable: true, // Allows clicking on the dots for navigation
+              },
+              breakpoints: {
+                1028: {
+                  slidesPerView: 2,
+                  spaceBetween: 30
+                },
+              
+                330: {
+                  slidesPerView: 1,
+                  spaceBetween: 0
+                }
+              }
+            });
+                  // Open the lightbox and display the clicked image
+      function openLightbox(imgElement) {
+        var fullImage = document.getElementById("fullImage");
+        fullImage.src = imgElement.src; // Set the full-screen image source
+        document.getElementById("lightbox").style.display = "flex"; // Show the lightbox
+      }
+
+      // Close the lightbox
+      function closeLightbox() {
+        document.getElementById("lightbox").style.display = "none"; // Hide the lightbox
+      }
+          </script>
+          </div>
+        </section>
+        <!-- service process -->
+        <section class="bg-gray-50 py-10">
+          <div class="container md:max-w-6xl  mx-auto px-4">
+            <h2 class="text-center text-4xl font-bold mb-10 text-gray-800">Our Process in Easy Steps</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto gap-8">
+              
+              <!-- Step 1 -->
+              <div class="text-center p-6 bg-white shadow-lg rounded-lg transition transform hover:-translate-y-1 hover:shadow-2xl">
+                <div class="mb-4">
+                  <span class="inline-block bg-blue-500 text-white p-3 rounded-full shadow-lg">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3-3 4 4m0 0l3-3 4 4m-7 1v10a1 1 0 001 1h3m-7-7h2a1 1 0 011 1v2m0 4h.01"></path>
+                    </svg>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Step 1: Consultation & Documentation Review</h3>
+                <p class="text-gray-500">We offer a free consultation and documentation review to assess your needs and help you prepare.</p>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="text-center p-6 bg-white shadow-lg rounded-lg transition transform hover:-translate-y-1 hover:shadow-2xl">
+                <div class="mb-4">
+                  <span class="inline-block bg-green-500 text-white p-3 rounded-full shadow-lg">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 0v4m0-4h4m-4 0H8m6-10h-4a2 2 0 00-2 2v2a2 2 0 002 2h4a2 2 0 012-2V4a2 2 0 00-2-2zM6 12H4a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2z"></path>
+                    </svg>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Step 2: Partial Payment</h3>
+                <p class="text-gray-500">Once you're ready to proceed, a partial payment will secure the start of the process.</p>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="text-center p-6 bg-white shadow-lg rounded-lg transition transform hover:-translate-y-1 hover:shadow-2xl">
+                <div class="mb-4">
+                  <span class="inline-block bg-yellow-500 text-white p-3 rounded-full shadow-lg">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 7v-6"></path>
+                    </svg>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Step 3: CDR Writing Starts</h3>
+                <p class="text-gray-500">We begin drafting your CDR with precision and expertise, ensuring it meets all standards.</p>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="text-center p-6 bg-white shadow-lg rounded-lg transition transform hover:-translate-y-1 hover:shadow-2xl">
+                <div class="mb-4">
+                  <span class="inline-block bg-purple-500 text-white p-3 rounded-full shadow-lg">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 10l-7 7-7-7"></path>
+                    </svg>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Step 4: Client Gets the Draft</h3>
+                <p class="text-gray-500">Once the draft is ready, we send it to you for review and feedback to ensure complete satisfaction.</p>
+              </div>
+
+              <!-- Step 5 -->
+              <div class="text-center p-6 bg-white shadow-lg rounded-lg transition transform hover:-translate-y-1 hover:shadow-2xl">
+                <div class="mb-4">
+                  <span class="inline-block bg-red-500 text-white p-3 rounded-full shadow-lg">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M9 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Step 5: Final CDR Delivery</h3>
+                <p class="text-gray-500">After any necessary revisions, we deliver the final version of your CDR for submission.</p>
+              </div>
+
+              <!-- Step 6 -->
+              <div class="text-center p-6 bg-white shadow-lg rounded-lg transition transform hover:-translate-y-1 hover:shadow-2xl">
+                <div class="mb-4">
+                  <span class="inline-block bg-teal-500 text-white p-3 rounded-full shadow-lg">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 11V7a4 4 0 118 0v4a4 4 0 11-8 0zm0 0v4m-6 4h12a1 1 0 010 2H5a1 1 0 110-2z"></path>
+                    </svg>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Step 6: Final Payment</h3>
+                <p class="text-gray-500">After receiving the final CDR, you can complete the final payment and successfully submit the CDR to Engineers Australia.</p>
+              </div>
+              
+            </div>
+          </div>
+        </section>
+        <!-- FAQs -->
+        <section class="container mx-auto mb-4  mt-10 px-4">
+          <h1 class="text-center text-4xl font-bold mb-8">Frequently Asked Questions about CDR</h1>
+          
+          <div id="accordion-collapse" class="max-w-2xl mx-auto space-y-2">
+            
+            <!-- FAQ 1 -->
+            <h2>
+              <button type="button" class="flex items-center justify-between w-full p-4 font-medium text-gray-700 border border-gray-200 rounded-lg focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-1" aria-expanded="false" aria-controls="accordion-collapse-body-1">
+                <span>How to Write a Successful CDR?</span>
+                <svg class="w-3 h-3 transition-transform transform rotate-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-collapse-body-1" class="accordion-content max-h-0" aria-labelledby="accordion-collapse-heading-1">
+              <div class="p-4 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="text-gray-500 dark:text-gray-400">Writing a successful CDR requires you to follow Engineers Australia’s guidelines carefully. Focus on three detailed career episodes, a well-structured summary statement, and a CPD list to demonstrate your engineering competencies.</p>
+              </div>
+            </div>
+            
+            <!-- FAQ 2 -->
+            <h2>
+              <button type="button" class="flex items-center justify-between w-full p-4 font-medium text-gray-700 border border-gray-200 rounded-lg focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
+                <span>What is CDR Pathway?</span>
+                <svg class="w-3 h-3 transition-transform transform rotate-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-collapse-body-2" class="accordion-content max-h-0" aria-labelledby="accordion-collapse-heading-2">
+              <div class="p-4 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="text-gray-500 dark:text-gray-400">The CDR Pathway allows engineers to migrate to Australia by demonstrating their skills through a CDR submission. It helps assess their qualifications and experience against Australian standards.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <h2>
+              <button type="button" class="flex items-center justify-between w-full p-4 font-medium text-gray-700 border border-gray-200 rounded-lg focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
+                <span>What is CDR in Skill Assessment?</span>
+                <svg class="w-3 h-3 transition-transform transform rotate-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-collapse-body-3" class="accordion-content max-h-0" aria-labelledby="accordion-collapse-heading-3">
+              <div class="p-4 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="text-gray-500 dark:text-gray-400">The CDR in Skill Assessment is used by Engineers Australia to evaluate your engineering qualifications and competencies against Australian standards.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <h2>
+              <button type="button" class="flex items-center justify-between w-full p-4 font-medium text-gray-700 border border-gray-200 rounded-lg focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-4" aria-expanded="false" aria-controls="accordion-collapse-body-4">
+                <span>What to do if your CDR gets rejected?</span>
+                <svg class="w-3 h-3 transition-transform transform rotate-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-collapse-body-4" class="accordion-content max-h-0" aria-labelledby="accordion-collapse-heading-4">
+              <div class="p-4 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="text-gray-500 dark:text-gray-400">If your CDR gets rejected, review the feedback from Engineers Australia, update your CDR accordingly, and make sure your career episodes align with the competency requirements before resubmitting.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <h2>
+              <button type="button" class="flex items-center justify-between w-full p-4 font-medium text-gray-700 border border-gray-200 rounded-lg focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-5" aria-expanded="false" aria-controls="accordion-collapse-body-5">
+                <span>What are the possible outcomes from EA?</span>
+                <svg class="w-3 h-3 transition-transform transform rotate-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                </svg>
+              </button>
+            </h2>
+            <div id="accordion-collapse-body-5" class="accordion-content max-h-0" aria-labelledby="accordion-collapse-heading-5">
+              <div class="p-4 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                <p class="text-gray-500 dark:text-gray-400">The outcomes from Engineers Australia can include a successful skill assessment, additional information requests, or rejection if the CDR does not meet the competency standards.</p>
+              </div>
+            </div>
+            
+          </div>
+          
+        <!-- Custom JS -->
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const accordionItems = document.querySelectorAll('#accordion-collapse h2 button');
+
+            accordionItems.forEach(button => {
+              button.addEventListener('click', () => {
+                const target = document.querySelector(button.getAttribute('data-accordion-target'));
+                const expanded = button.getAttribute('aria-expanded') === 'true';
+                
+                // Close other panels
+                accordionItems.forEach(item => {
+                  if (item !== button) {
+                    const otherTarget = document.querySelector(item.getAttribute('data-accordion-target'));
+                    otherTarget.style.maxHeight = '0px';
+                    item.querySelector('svg').classList.remove('rotate-180');
+                    item.setAttribute('aria-expanded', 'false');
+                  }
+                });
+
+                // Toggle current panel
+                if (expanded) {
+                  target.style.maxHeight = '0px';
+                  button.querySelector('svg').classList.remove('rotate-180');
+                  button.setAttribute('aria-expanded', 'false');
+                } else {
+                  target.style.maxHeight = target.scrollHeight + 'px';
+                  button.querySelector('svg').classList.add('rotate-180');
+                  button.setAttribute('aria-expanded', 'true');
+                }
+              });
+            });
+          });
+        </script>
+        </section>
+    </main>
     <%- include('../partials/footer') %>
 </body>
 </html>

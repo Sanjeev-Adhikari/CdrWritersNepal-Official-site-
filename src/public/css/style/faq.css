@@ -1,0 +1,15 @@
+.faq-answer {
+  display: none;
+}
+.faq-active .faq-answer {
+  display: block;
+}
+.accordion-content {
+  transition: max-height 0.4s ease-in-out;
+  overflow: hidden;
+}
+.counter {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111827;
+}

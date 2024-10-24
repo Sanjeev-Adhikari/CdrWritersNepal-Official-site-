@@ -23,7 +23,7 @@ export default {
       },
       clipPath: {
         'zigzag': 'polygon(0 0, 100% 0, 80% 50%, 100% 100%, 0% 100%, 0% 100%)',
-      }
+      },
     },
   },
   plugins: [

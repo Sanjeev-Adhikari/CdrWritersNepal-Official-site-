@@ -1,3 +1,92 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* headings */
+
+.heading {
+    @apply md:text-6xl text-4xl font-bold;
+}
+
+.normal-heading {
+    @apply text-4xl font-bold text-red-600 mb-4
+}
+
+.medium-heading {
+    @apply text-xl font-semibold text-gray-700;
+}
+
+.centered-heading {
+    @apply text-4xl font-bold text-red-600 text-center mb-6
+}
+.small-heading {
+    @apply text-lg font-semibold text-gray-700 mb-2;
+}
+
+/* sections */
+
+.section {
+    @apply container mx-auto px-4 py-8;
+}
+/* buttons */
+.btn-primary {
+    @apply bg-white md:mb-0 mb-4 text-red-600 font-bold px-6 py-3 rounded-lg mt-4 ring-1 ring-black hover:translate-y-0.5 duration-300;
+}
+
+.btn-secondary {
+    @apply bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-red-600 focus:outline-none w-full;
+}
+
+.btn-ternary {
+    @apply bg-red-500 text-white py-3 px-4 rounded-lg shadow-lg hover:bg-red-600 focus:outline-none;
+
+}
+
+.btn-faq {
+    @apply flex items-center justify-between w-full p-4 font-medium text-gray-700 border border-gray-200 rounded-lg focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3;
+}
+
+/* paragraphs */
+
+.normal-paragraph {
+    @apply text-gray-700 leading-relaxed mb-2;
+}
+
+.faq-paragraph {
+    @apply text-gray-500 dark:text-gray-400;
+}
+
+.centered-paragraph {
+    @apply text-gray-700 text-center mb-6;
+}
+
+.card-paragraph {
+    @apply text-gray-500;
+}
+
+
+/* cards */
+
+.card {
+    @apply text-center p-6 bg-white shadow-lg rounded-lg transition transform hover:-translate-y-1 hover:shadow-2xl;
+}
+
+.swipper-card {
+    @apply rounded-2xl border border-red-100 flex justify-center items-center shadow-lg p-5;
+}
+
+/* others */
+
+.label {
+    @apply block text-gray-700 font-bold mb-2;
+}
+
+.input-field {
+    @apply w-full px-4 py-2 border rounded-lg focus:outline-none;
+}
+
+.faq-box {
+    @apply p-4 border border-gray-200 dark:border-gray-700 dark:bg-gray-900;
+}
+
